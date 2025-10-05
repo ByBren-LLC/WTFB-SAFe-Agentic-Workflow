@@ -1,0 +1,57 @@
+# WTFB-app Code Owners
+# This file defines who must review PRs for specific parts of the codebase
+
+# Global fallback - ARCHitect-in-the-IDE (single developer setup)
+* @cheddarfox
+
+# Core configuration files - require architect review
+/.env.template @cheddarfox
+/config.ts @cheddarfox
+/config/ @cheddarfox
+/next.config.js @cheddarfox
+/tailwind.config.js @cheddarfox
+/tsconfig.json @cheddarfox
+
+# Package management - require architect review
+/package.json @cheddarfox
+/yarn.lock @cheddarfox
+
+# Database schema - require architect review
+/prisma/ @cheddarfox
+
+# Payment integration - require architect review (future: @payments-team)
+/app/api/payments/ @cheddarfox
+/lib/stripe/ @cheddarfox
+/components/payments/ @cheddarfox
+
+# Authentication - require architect review (future: @auth-team)
+/app/api/auth/ @cheddarfox
+/lib/auth/ @cheddarfox
+/middleware.ts @cheddarfox
+
+# API routes - require architect review (future: @backend-team)
+/app/api/ @cheddarfox
+
+# UI components - require architect review (future: @frontend-team)
+/components/ @cheddarfox
+/app/(dashboard)/ @cheddarfox
+/app/(auth)/ @cheddarfox
+
+# Utilities and shared code - require architect review
+/lib/ @cheddarfox
+/utils/ @cheddarfox
+
+# CI/CD and deployment - require architect review
+/.github/ @cheddarfox
+/Dockerfile @cheddarfox
+/docker-compose.yml @cheddarfox
+
+# Documentation - require architect review for standards
+/docs/ @cheddarfox
+/specs/ @cheddarfox
+README.md @cheddarfox
+
+# Testing - require architect review for test infrastructure (future: @qa-team)
+/__tests__/ @cheddarfox
+/playwright.config.ts @cheddarfox
+/jest.config.js @cheddarfox
