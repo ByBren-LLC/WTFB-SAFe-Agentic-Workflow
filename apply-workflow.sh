@@ -116,15 +116,61 @@ do
   sed -i "s|__TICKET_URL_PREFIX__|$TICKET_URL_PREFIX|g" "$file"
 done
 
+# --- Merge Package.json Scripts ---
+log_info "Merging essential scripts into package.json..."
+
+if [ -f "$TARGET_DIR/package.json" ]; then
+  # Check if jq is installed for JSON manipulation
+  if command -v jq &> /dev/null; then
+    # Essential scripts to merge
+    ESSENTIAL_SCRIPTS='{
+      "ci:validate": "yarn type-check && yarn lint && yarn test:unit",
+      "ci:build": "yarn build",
+      "ci:test": "yarn test:unit && yarn test:integration",
+      "type-check": "tsc --noEmit",
+      "lint": "eslint .",
+      "lint:fix": "eslint --fix .",
+      "format:check": "prettier --check .",
+      "test:unit": "jest --testPathPatterns=__tests__/unit --passWithNoTests",
+      "test:integration": "jest --testPathPatterns=__tests__/integration --passWithNoTests",
+      "test:smoke": "jest --testPathPatterns=__tests__/smoke --passWithNoTests"
+    }'
+
+    # Merge scripts (only add if they don't exist)
+    jq --argjson new_scripts "$ESSENTIAL_SCRIPTS" \
+      '.scripts = (.scripts // {}) + ($new_scripts | to_entries | map(select(.key as $k | ($k | in($ARGS.positional[0].scripts)) | not)) | from_entries)' \
+      "$TARGET_DIR/package.json" > "$TARGET_DIR/package.json.tmp" && \
+      mv "$TARGET_DIR/package.json.tmp" "$TARGET_DIR/package.json"
+
+    log_success "Essential scripts merged into package.json"
+  else
+    log_warn "jq not installed. Please manually add CI scripts to package.json:"
+    log_warn "  - ci:validate: yarn type-check && yarn lint && yarn test:unit"
+    log_warn "  - ci:build: yarn build"
+    log_warn "  - ci:test: yarn test:unit && yarn test:integration"
+  fi
+else
+  log_warn "No package.json found. Skipping script merge."
+fi
+
+# --- Make Scripts Executable ---
+log_info "Making scripts executable..."
+chmod +x "$TARGET_DIR/project_workflow/scripts/setup-ci-cd.sh" 2>/dev/null || true
+if [ "$AGENT_PROVIDER" = "claude_code" ]; then
+  chmod +x "$TARGET_DIR/$AGENT_CONFIG_DIR/hooks/"*.sh 2>/dev/null || true
+fi
+
 # --- Final Steps ---
 log_info "Adding .gitignore entries..."
 # Add .claude/ or .augment/ to .gitignore
-echo -e "\n# AI Agent Configuration\n$AGENT_CONFIG_DIR/" >> "$TARGET_DIR/.gitignore"
+if ! grep -q "^$AGENT_CONFIG_DIR/" "$TARGET_DIR/.gitignore" 2>/dev/null; then
+  echo -e "\n# AI Agent Configuration\n$AGENT_CONFIG_DIR/" >> "$TARGET_DIR/.gitignore"
+fi
 
 log_success "WTFB SAFe-Agentic-Workflow integration complete!"
 log_info "Next steps:"
 log_info "1. Review the new files in your project."
 log_info "2. If you chose Augment, read $AGENT_CONFIG_DIR/README.md for manual setup."
-log_info "3. Run 'chmod +x $AGENT_CONFIG_DIR/hooks/*.sh' if you chose Claude Code."
-log_info "4. Configure GitHub secrets and branch protection as described in project_workflow/CONTRIBUTING.md."
+log_info "3. Run 'bash project_workflow/scripts/setup-ci-cd.sh' to configure GitHub."
+log_info "4. Review CONTRIBUTING.md and AGENTS.md with your team."
 log_info "5. Start building with your new SAFe-Agentic-Workflow!"
