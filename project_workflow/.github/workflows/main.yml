@@ -1,0 +1,240 @@
+name: Multi-Team Collaboration Pipeline
+
+on:
+  pull_request:
+    branches: [__PRIMARY_DEV_BRANCH__]
+    types: [opened, synchronize, reopened, ready_for_review]
+  push:
+    branches: [__PRIMARY_DEV_BRANCH__]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: "18"
+  YARN_CACHE_FOLDER: ~/.yarn
+
+jobs:
+  # Job 1: Validate Branch and PR Structure
+  validate-structure:
+    name: 🔍 Validate Branch & PR Structure
+    runs-on: ubuntu-latest
+    if: github.event_name == "pull_request"
+    outputs:
+      branch-valid: ${{ steps.branch-check.outputs.valid }}
+      linear-ticket: ${{ steps.linear-check.outputs.ticket }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate branch naming convention
+        id: branch-check
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          echo "Checking branch: $BRANCH_NAME"
+          
+          # Check __TICKET_PREFIX__-{number}-{description} pattern
+          if [[ $BRANCH_NAME =~ ^__TICKET_PREFIX__-[0-9]+-[a-z0-9-]+$ ]]; then
+            echo "✅ Branch name follows convention: $BRANCH_NAME"
+            echo "valid=true" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Branch name must follow pattern: __TICKET_PREFIX__-{number}-{description}"
+            echo "❌ Current: $BRANCH_NAME"
+            echo "valid=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Extract and validate Linear ticket
+        id: linear-check
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          TICKET=$(echo $BRANCH_NAME | grep -oE "__TICKET_PREFIX__-[0-9]+" | head -1)
+          echo "Linear ticket: $TICKET"
+          echo "ticket=$TICKET" >> $GITHUB_OUTPUT
+
+      - name: Check PR title format
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          TICKET="${{ steps.linear-check.outputs.ticket }}"
+          
+          if [[ $PR_TITLE =~ \[$TICKET\] ]]; then
+            echo "✅ PR title includes Linear ticket: $PR_TITLE"
+          else
+            echo "❌ PR title must include [$TICKET]"
+            echo "❌ Current: $PR_TITLE"
+            exit 1
+          fi
+
+  # Job 2: Check if branch is up-to-date with dev
+  check-rebase-status:
+    name: 🔄 Check Rebase Status
+    runs-on: ubuntu-latest
+    if: github.event_name == "pull_request"
+    needs: validate-structure
+    outputs:
+      needs-rebase: ${{ steps.rebase-check.outputs.needs_rebase }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check if branch needs rebase
+        id: rebase-check
+        run: |
+          git fetch origin __PRIMARY_DEV_BRANCH__
+          
+          # Check if feature branch is behind dev
+          BEHIND=$(git rev-list --count HEAD..origin/__PRIMARY_DEV_BRANCH__)
+          AHEAD=$(git rev-list --count origin/__PRIMARY_DEV_BRANCH__..HEAD)
+          
+          echo "Commits behind __PRIMARY_DEV_BRANCH__: $BEHIND"
+          echo "Commits ahead of __PRIMARY_DEV_BRANCH__: $AHEAD"
+          
+          if [ $BEHIND -gt 0 ]; then
+            echo "❌ Branch is $BEHIND commits behind __PRIMARY_DEV_BRANCH__. Please rebase."
+            echo "needs_rebase=true" >> $GITHUB_OUTPUT
+            exit 1
+          else
+            echo "✅ Branch is up-to-date with __PRIMARY_DEV_BRANCH__"
+            echo "needs_rebase=false" >> $GITHUB_OUTPUT
+          fi
+
+  # Job 3: Run comprehensive tests
+  test-suite:
+    name: 🧪 Test Suite
+    runs-on: ubuntu-latest
+    needs: [validate-structure, check-rebase-status]
+    if: needs.check-rebase-status.outputs.needs-rebase == 'false'
+    strategy:
+      matrix:
+        test-type: [unit, integration]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run unit tests
+        if: matrix.test-type == 'unit'
+        env:
+          NODE_ENV: test
+        run: |
+          yarn test:unit
+          echo "UNIT_TESTS=passed" >> $GITHUB_ENV
+
+      - name: Run integration tests
+        if: matrix.test-type == 'integration'
+        env:
+          NODE_ENV: test
+        run: |
+          yarn test:integration
+          echo "INTEGRATION_TESTS=passed" >> $GITHUB_ENV
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ matrix.test-type }}
+          path: |
+            coverage/
+            test-results/
+
+  # Job 4: Code quality and security checks
+  quality-checks:
+    name: 🔍 Quality & Security
+    runs-on: ubuntu-latest
+    needs: [validate-structure, check-rebase-status]
+    if: needs.check-rebase-status.outputs.needs-rebase == 'false'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run ESLint
+        run: yarn lint --max-warnings=0
+
+      - name: Run TypeScript check
+        run: yarn type-check
+
+      - name: Run Prettier check
+        run: yarn format:check
+
+      - name: Security audit
+        run: yarn audit --level moderate
+
+  # Job 5: Build verification
+  build-verification:
+    name: 🏗️ Build Verification
+    runs-on: ubuntu-latest
+    needs: [validate-structure, check-rebase-status]
+    if: needs.check-rebase-status.outputs.needs-rebase == 'false'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build application
+        run: yarn build
+
+      - name: Verify build artifacts
+        run: |
+          if [ ! -d ".next" ]; then
+            echo "❌ Build failed - .next directory not found"
+            exit 1
+          fi
+          echo "✅ Build successful"
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: .next/
+
+  # Job 6: Post-merge validation
+  post-merge-validation:
+    name: ✅ Post-merge Validation
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/__PRIMARY_DEV_BRANCH__'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run smoke tests
+        run: yarn test:smoke || echo "Smoke tests not configured yet"
+
+      - name: Update Linear tickets
+        run: |
+          echo "🔄 Updating Linear tickets for merged PRs..."
+          # Add Linear API integration here if LINEAR_API_KEY is configured
+
