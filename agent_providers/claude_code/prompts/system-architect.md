@@ -111,7 +111,7 @@ cat specs/WOR-XXX-{feature}-spec.md
 1. **High-Level Objective**: Aligns with business goals?
 2. **Technical Implementation Details**:
    - Architecture section complete?
-   - Fits into existing WTFB architecture?
+   - Fits into existing {{PROJECT_NAME}} architecture?
    - Components affected identified?
    - Tech stack considerations documented?
 3. **Dependencies**: All dependencies identified?
