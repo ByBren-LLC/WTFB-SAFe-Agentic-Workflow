@@ -83,15 +83,53 @@ This template is designed to support multiple AI agent providers:
 
 ## 📚 Further Documentation
 
-For a deeper dive into the philosophy, architecture, and implementation details of this workflow, please refer to the comprehensive documentation in our Confluence space:
+For a deeper dive into the philosophy, architecture, and implementation details of this workflow, please refer to:
 
-* **[Blueprint for the WTFB SAFe-Agentic-Workflow Template](https://cheddarfox.atlassian.net/wiki/spaces/WA/pages/366444595/Blueprint+for+the+WTFB+SAFe-Agentic-Workflow+Template)** (Parent Page)
-  * [Core Philosophy & Workflow](https://cheddarfox.atlassian.net/wiki/spaces/WA/pages/366411879/Core+Philosophy+Workflow)
-  * [The Agent System](https://cheddarfox.atlassian.net/wiki/spaces/WA/pages/366510166/The+Agent+System)
-  * [The Pattern Library](https://cheddarfox.atlassian.net/wiki/spaces/WA/pages/366510186/The+Pattern+Library)
-  * [The Spec-Driven Workflow](https://cheddarfox.atlassian.net/wiki/spaces/WA/pages/366411898/The+Spec-Driven+Workflow)
-  * [Template Repository Architecture](https://cheddarfox.atlassian.net/wiki/spaces/WA/pages/366411918/Template+Repository+Architecture)
-  * [Implementation & Rollout Plan](https://cheddarfox.atlassian.net/wiki/spaces/WA/pages/366444615/Implementation+Rollout+Plan)
+* **[AGENTS.md](./AGENTS.md)** - Quick reference guide for the agent team
+* **[CLAUDE.md](./CLAUDE.md)** - Claude Code specific configuration and guidelines
+* **[CONTRIBUTING.md](./project_workflow/CONTRIBUTING.md)** - Complete contributor guide
+* **[Pattern Library](./patterns_library/README.md)** - Reusable code patterns
+* **[Spec Templates](./specs_templates/README.md)** - Planning and specification templates
+* **[Workflow Documentation](./docs/workflow/)** - Workflow evolution and best practices
+* **[Standard Operating Procedures](./docs/sop/)** - Agent workflow SOPs
+
+> **Note**: Additional comprehensive documentation is available. For access to detailed architecture blueprints and implementation guides, please contact the maintainers.
+
+## 🤝 Contributing
+
+We welcome contributions! This template is designed to be adapted and improved by the community.
+
+### Getting Started
+
+1. **Read the Documentation**:
+   - [Contributing Guidelines](./project_workflow/CONTRIBUTING.md) - Complete workflow guide
+   - [AGENTS.md](./AGENTS.md) - Agent team quick reference
+   - [Pattern Discovery Protocol](./patterns_library/README.md) - How to find and reuse patterns
+
+2. **Report Issues**:
+   - Found a bug? [Open an issue](https://github.com/ByBren-LLC/WTFB-SAFe-Agentic-Workflow/issues)
+   - Have a feature request? [Start a discussion](https://github.com/ByBren-LLC/WTFB-SAFe-Agentic-Workflow/discussions)
+
+3. **Submit Pull Requests**:
+   - Follow the [CONTRIBUTING.md](./project_workflow/CONTRIBUTING.md) workflow
+   - Use the PR template in `.github/pull_request_template.md`
+   - Ensure all quality checks pass
+
+### Code of Conduct
+
+We are committed to providing a welcoming and inclusive environment. Please be respectful and professional in all interactions.
+
+## 📖 Example Usage
+
+After running `apply-workflow.sh`, your typical workflow will look like:
+
+1. **Create a spec**: `cp specs_templates/spec_template.md specs/{{TICKET_PREFIX}}-123-my-feature-spec.md`
+2. **Fill in requirements**: Define user story, acceptance criteria, tasks
+3. **Implement using agents**: Follow the spec with agent collaboration
+4. **Validate with demo script**: Run the demo script from spec
+5. **Create PR**: Use the standardized PR template
+
+See [AGENTS.md](./AGENTS.md) for detailed agent usage guide.
 
 ---
 

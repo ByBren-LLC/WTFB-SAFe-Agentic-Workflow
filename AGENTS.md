@@ -23,8 +23,8 @@
 
 | Agent Role | Use Case | Success Criteria | Primary Tools |
 |-----------|----------|------------------|---------------|
-| **TDM** (Technical Delivery Manager) | Coordination, blocker escalation, Linear ticket management | Linear updated, PRs merged, blockers resolved | Linear, GitHub, Confluence |
-| **BSA** (Business Systems Analyst) | Requirements decomposition, acceptance criteria, testing strategy | Clear user stories, testable ACs, QA plan defined | Linear, Confluence, Markdown |
+| **TDM** (Technical Delivery Manager) | Coordination, blocker escalation, Linear ticket management | Linear updated, PRs merged, blockers resolved | Linear, GitHub, Documentation |
+| **BSA** (Business Systems Analyst) | Requirements decomposition, acceptance criteria, testing strategy | Clear user stories, testable ACs, QA plan defined | Linear, Documentation, Markdown |
 | **System Architect** | Pattern validation, conflict prevention, architectural decisions | ADR created, patterns validated, no conflicts | Read, Grep, ADR templates |
 | **FE Developer** | UI components, client-side logic, user interactions | `yarn lint && yarn build` passes | Read, Write, Edit, Bash |
 | **BE Developer** | API routes, server logic, RLS enforcement | `yarn test:integration` passes | Read, Write, Edit, Bash |
@@ -196,12 +196,7 @@ grep -r "withUserContext|withAdminContext" ~/.claude/todos/
 
 ## Related Documentation
 
-### Confluence (Primary Reference)
-
-- [SAFe ART Agent Team: Evidence-Based Delivery Model](https://cheddarfox.atlassian.net/wiki/spaces/WA/pages/365264898) - Complete agent structure
-- [Coding Standards & Pattern Discovery](https://cheddarfox.atlassian.net/wiki/spaces/WA/pages/365494275) - Standards and discovery protocol
-
-### Local Documentation
+### Repository Documentation
 
 - `/CONTRIBUTING.md` - Git workflow, branch naming, commits (MANDATORY READ)
 - `/docs/guides/AGENT_TEAM_GUIDE.md` - Team onboarding guide
