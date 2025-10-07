@@ -83,7 +83,7 @@ grep -r "pull request|PR|merge" ~/.claude/todos/ 2>/dev/null
 grep -r "CI|failed|deploy" ~/.claude/todos/
 ```
 
-###4. Search Specs Directory (MANDATORY)
+### 4. Search Specs Directory (MANDATORY)
 ```bash
 # Find PR template in spec
 cat specs/WOR-XXX-{feature}-spec.md | grep -A 30 "Pull Request Template"
