@@ -167,7 +167,7 @@ VARIABLE_NAME=description
 <!-- Auto-assigned based on CODEOWNERS, but you can request specific reviewers -->
 
 **Required Reviewers:**
-- [ ] @cheddarfox (ARCHitect-in-the-IDE)
+- [ ] @{{ARCHITECT_GITHUB_HANDLE}} (ARCHitect-in-the-IDE)
 - [ ] Team lead: @<!-- team-lead -->
 
 **Optional Reviewers:**
@@ -183,7 +183,7 @@ VARIABLE_NAME=description
 ## 🚨 For Reviewers
 
 ### Review Checklist
-- [ ] Code follows WTFB coding standards
+- [ ] Code follows {{PROJECT_NAME}} coding standards
 - [ ] Business logic is sound
 - [ ] Error handling is comprehensive
 - [ ] Tests are adequate and passing
@@ -202,8 +202,8 @@ VARIABLE_NAME=description
 
 **Merge Strategy**: `Rebase and merge` (maintains linear history)
 
-<!-- 
+<!--
 Template Version: 1.0
 Last Updated: 2025-08-16
-Maintained by: WTFB Development Team
+Maintained by: {{PROJECT_NAME}} Development Team
 -->
