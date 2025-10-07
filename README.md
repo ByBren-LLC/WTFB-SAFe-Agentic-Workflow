@@ -79,21 +79,6 @@ WTFB-SAFe-Agentic-Workflow/
 
 Download: [CITATION.bib](CITATION.bib) | [CITATION.cff](CITATION.cff)
 
-### BibTeX
-
-```bibtex
-@techreport{wtfb2025safe,
-  title={Evidence-Based Multi-Agent Development: A SAFe Framework Implementation with Claude Code},
-  author={Graham, J. Scott and {WTFB Development Team}},
-  year={2025},
-  month={October},
-  institution={WTFB Development Team},
-  type={White Paper},
-  url={https://github.com/ByBren-LLC/WTFB-SAFe-Agentic-Workflow},
-  note={5 months production data, 169 issues, 9 sprint cycles}
-}
-```
-
 ### APA 7th Edition
 
 ```text
