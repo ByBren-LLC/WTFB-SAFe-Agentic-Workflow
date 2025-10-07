@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this methodology, please cite it as below."
+authors:
+  - family-names: "Graham"
+    given-names: "J. Scott"
+    alias: "cheddarfox"
+    email: "scott@wordstofilmby.com"
+  - name: "WTFB Development Team"
+title: "Evidence-Based Multi-Agent Development: A SAFe Framework Implementation with Claude Code"
+version: 1.0
+date-released: 2025-10-07
+url: "https://github.com/ByBren-LLC/WTFB-SAFe-Agentic-Workflow"
+keywords:
+  - multi-agent
+  - SAFe
+  - AI-assisted development
+  - Claude Code
+  - software engineering
+  - agile methodology
+  - task orchestration
+  - evidence-based development
+license: MIT
+repository-code: "https://github.com/ByBren-LLC/WTFB-SAFe-Agentic-Workflow"
+type: software
+abstract: >-
+  A comprehensive methodology for software development using multi-agent
+  orchestration with Claude Code's Task tool. Based on 5 months of production
+  experience (169 issues, 9 cycles, 2,193 commits) implementing the Scaled
+  Agile Framework (SAFe) with 11 specialized AI agents. Includes complete
+  whitepaper with production validation, meta-circular validation evidence,
+  and honest limitations assessment.
+
