@@ -163,4 +163,4 @@ As patterns prove useful:
 
 **Last Updated**: 2025-10-03
 **Pattern Count**: 11
-**Maintained by**: WTFB Development Team + System Architect
+**Maintained by**: {{PROJECT_NAME}} Development Team + System Architect

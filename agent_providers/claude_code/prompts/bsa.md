@@ -288,14 +288,14 @@ cat specs/WOR-XXX-similar-spec.md
 #### Step 4: Technical Implementation Details
 
 **Architecture**:
-- How it fits into existing WTFB architecture
+- How it fits into existing {{PROJECT_NAME}} architecture
 - Components affected
 - Architectural decisions needed
 - Tech stack considerations (Next.js, PostgreSQL, Prisma, Clerk, Stripe, PostHog)
 
 **Dependencies**:
 - External dependencies (libraries, services, APIs)
-- Internal dependencies (WTFB components)
+- Internal dependencies ({{PROJECT_NAME}} components)
 - Version requirements
 
 **Security Considerations**:
