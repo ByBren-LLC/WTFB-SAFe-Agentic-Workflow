@@ -77,15 +77,18 @@ WTFB-SAFe-Agentic-Workflow/
 
 ## 🎓 Citation
 
+Download: [CITATION.bib](CITATION.bib) | [CITATION.cff](CITATION.cff)
+
 ### BibTeX
 
 ```bibtex
 @techreport{wtfb2025safe,
   title={Evidence-Based Multi-Agent Development: A SAFe Framework Implementation with Claude Code},
-  author={WTFB Team and Graham, J. Scott},
+  author={Graham, J. Scott and {WTFB Development Team}},
   year={2025},
   month={October},
   institution={WTFB Development Team},
+  type={White Paper},
   url={https://github.com/ByBren-LLC/WTFB-SAFe-Agentic-Workflow},
   note={5 months production data, 169 issues, 9 sprint cycles}
 }
@@ -94,8 +97,8 @@ WTFB-SAFe-Agentic-Workflow/
 ### APA 7th Edition
 
 ```text
-WTFB Team & Graham, J. S. (2025). Evidence-based multi-agent development:
-A SAFe framework implementation with Claude Code [White paper].
+Graham, J. S., & WTFB Development Team. (2025). Evidence-based multi-agent
+development: A SAFe framework implementation with Claude Code [White paper].
 https://github.com/ByBren-LLC/WTFB-SAFe-Agentic-Workflow
 ```
 
@@ -144,7 +147,9 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ## 🏛️ Meta-Note: Self-Validation
 
-This methodology was **validated by itself**: 7 SAFe agents performed meta-circular validation of the whitepaper and caught critical fabricated data before publication. See [whitepaper/validation/VALIDATION-SUMMARY.md](whitepaper/validation/VALIDATION-SUMMARY.md) for the complete story of how the methodology prevented academic fraud by validating its own documentation.
+This methodology was **validated by itself**: 7 SAFe agents performed meta-circular validation of the whitepaper and caught critical fabricated data before publication.
+
+See [whitepaper/validation/VALIDATION-SUMMARY.md](whitepaper/validation/VALIDATION-SUMMARY.md) for the complete story of how the methodology prevented academic fraud by validating its own documentation.
 
 **The methodology caught its own problems.** That's the proof it works.
 
