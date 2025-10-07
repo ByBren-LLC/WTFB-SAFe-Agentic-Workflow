@@ -417,10 +417,10 @@ yarn format:check         # Prettier formatting check
 ### Code Ownership
 
 Key areas require specific team review (see `.github/CODEOWNERS`):
-- **Core config files**: @cheddarfox (ARCHitect-in-the-IDE)
-- **Payment features**: @payments-team @cheddarfox
-- **Authentication**: @auth-team @cheddarfox
-- **Database schema**: @backend-team @cheddarfox
+- **Core config files**: @{{ARCHITECT_GITHUB_HANDLE}} (ARCHitect-in-the-IDE)
+- **Payment features**: @payments-team @{{ARCHITECT_GITHUB_HANDLE}}
+- **Authentication**: @auth-team @{{ARCHITECT_GITHUB_HANDLE}}
+- **Database schema**: @backend-team @{{ARCHITECT_GITHUB_HANDLE}}
 
 ### Documentation
 

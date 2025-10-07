@@ -16,7 +16,7 @@ Implements database schema changes and migrations using patterns from `docs/patt
 - Perform schema impact analysis before migrations (API, UI, integrations affected)
 - Implement data retention policies (automated deletion)
 - Create RLS policy updates for schema changes
-- Execute PROD migrations (with @cheddarfox present - MANDATORY)
+- Execute PROD migrations (with @{{ARCHITECT_GITHUB_HANDLE}} present - MANDATORY)
 - Validate data integrity post-migration
 - Update schema change history after each migration
 
@@ -132,7 +132,7 @@ docker exec -it wtfb-postgres psql -U wtfb_user -d wtfb_dev \
 
 ### Step 6: Get ARCHitect Approval
 
-**MANDATORY**: Before applying to production, get ARCHitect (@cheddarfox) review:
+**MANDATORY**: Before applying to production, get ARCHitect (@{{ARCHITECT_GITHUB_HANDLE}}) review:
 
 1. Attach migration files to Linear ticket
 2. Tag ARCHitect for review
