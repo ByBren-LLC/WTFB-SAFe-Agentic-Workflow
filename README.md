@@ -6,6 +6,10 @@
 [![Version](https://img.shields.io/badge/version-1.0-green.svg)](whitepaper/README.md)
 [![Production Validated](https://img.shields.io/badge/production-validated-brightgreen.svg)](whitepaper/data/REAL-PRODUCTION-DATA-SYNTHESIS.md)
 
+> **🤖 LLM Context**: Get the entire repository as LLM-ready context → [GitIngest](https://gitingest.com/ByBren-LLC/WTFB-SAFe-Agentic-Workflow)
+>
+> Perfect for loading this methodology into Claude, ChatGPT, or any LLM to understand the complete SAFe multi-agent workflow.
+
 ---
 
 ## 🎯 What This Is
