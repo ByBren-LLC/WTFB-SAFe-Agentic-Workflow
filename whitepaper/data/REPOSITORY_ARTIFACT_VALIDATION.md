@@ -61,10 +61,10 @@ This report validates the development rigor claims in the WTFB whitepaper by ana
 | **Other** | 26 | Various specialized documentation |
 
 **Key Documents**:
-- DATA_DICTIONARY.md (Single source of truth for schema)
-- SECURITY_FIRST_ARCHITECTURE.md (Security patterns)
-- RLS_IMPLEMENTATION_GUIDE.md (Row-level security)
-- CI-CD-Pipeline-Guide.md (DevOps automation)
+- docs/database/DATA_DICTIONARY.md (Single source of truth for schema)
+- docs/security/SECURITY_FIRST_ARCHITECTURE.md (Security patterns)
+- docs/database/RLS_IMPLEMENTATION_GUIDE.md (Row-level security)
+- docs/ci-cd/CI-CD-Pipeline-Guide.md (DevOps automation)
 - PLANNING-AGENT-META-PROMPT.md (SAFe methodology)
 
 ## 🎯 Pattern Library (12 Patterns)

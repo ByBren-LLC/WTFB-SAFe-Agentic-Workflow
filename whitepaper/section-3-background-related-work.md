@@ -424,9 +424,9 @@ Our SAFe multi-agent methodology embodies vibe engineering principles across all
 - "Search First, Reuse Always, Create Only When Necessary"
 
 **3. Comprehensive Documentation**:
-- DATA_DICTIONARY.md (single source of truth for schema)
-- RLS_IMPLEMENTATION_GUIDE.md (security patterns)
-- SECURITY_FIRST_ARCHITECTURE.md
+- docs/database/DATA_DICTIONARY.md (single source of truth for schema)
+- docs/database/RLS_IMPLEMENTATION_GUIDE.md (security patterns)
+- docs/security/SECURITY_FIRST_ARCHITECTURE.md
 - 136 docs, 36 specs, 208 Confluence pages
 - Technical Writer agent role
 

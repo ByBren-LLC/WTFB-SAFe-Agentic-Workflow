@@ -394,7 +394,7 @@ https://linear.app/your-team/issue/PROJ-1"
 1. **Read More Documentation**:
    - [ ] `whitepaper/section-9-implementation-guide.md` - Full implementation guide
    - [ ] `CONTRIBUTING.md` - Complete workflow guide
-   - [ ] `CI-CD-Pipeline-Guide.md` - CI/CD integration
+   - [ ] `docs/ci-cd/CI-CD-Pipeline-Guide.md` - CI/CD integration
 
 2. **Explore Agent Roles**:
    - [ ] Read all 11 agent prompts in `.claude/agents/`

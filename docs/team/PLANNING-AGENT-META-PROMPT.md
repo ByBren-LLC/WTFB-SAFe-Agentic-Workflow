@@ -586,10 +586,10 @@ Before finalizing planning document:
 
 **Core Documentation**:
 - `CONTRIBUTING.md` - Git workflow and standards
-- `DATA_DICTIONARY.md` - Database schema reference
-- `SECURITY_FIRST_ARCHITECTURE.md` - Security patterns
-- `RLS_IMPLEMENTATION_GUIDE.md` - RLS patterns
-- `CI-CD-Pipeline-Guide.md` - CI/CD standards
+- `docs/database/DATA_DICTIONARY.md` - Database schema reference
+- `docs/security/SECURITY_FIRST_ARCHITECTURE.md` - Security patterns
+- `docs/database/RLS_IMPLEMENTATION_GUIDE.md` - RLS patterns
+- `docs/ci-cd/CI-CD-Pipeline-Guide.md` - CI/CD standards
 
 **Templates**:
 - `specs/planning_template.md` - SAFe planning template
