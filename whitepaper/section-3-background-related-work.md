@@ -385,25 +385,179 @@ Unlike pure research papers:
 
 This transparency enables informed adoption.
 
-## 3.8 Summary of Background
+## 3.8 Vibe Engineering vs. Vibe Coding
+
+### 3.8.1 The Spectrum of AI-Assisted Development
+
+Willison (2025) articulates a critical distinction in AI-assisted software development:
+
+**Vibe Coding** (irresponsible end):
+- Fast, loose, prompt-driven development
+- No attention to how code actually works
+- Accept results if they "appear to work"
+- Low-stakes, toy projects
+- No accountability for maintenance
+
+**Vibe Engineering** (professional end):
+- Seasoned professionals accelerating work with LLMs
+- Proudly and confidently accountable for software produced
+- Production-quality code with confidence in future maintenance
+- Difficult, requires depth of understanding
+- Amplifies existing senior engineering expertise
+
+### 3.8.2 Alignment with Our Methodology
+
+Our SAFe multi-agent methodology embodies vibe engineering principles across all 12 criteria Willison identifies:
+
+**1. Automated Testing**:
+- QAS agent role dedicated to testing strategy
+- Test-first development in BSA specifications
+- Acceptance criteria defined before implementation
+- Demo scripts for validation
+- Evidence-based delivery (must prove it works)
+
+**2. Planning in Advance**:
+- Spec-driven workflow (specs as single source of truth)
+- BSA creates detailed specifications BEFORE implementation
+- System Architect validates architectural approach FIRST
+- Planning documents for large initiatives
+- "Search First, Reuse Always, Create Only When Necessary"
+
+**3. Comprehensive Documentation**:
+- DATA_DICTIONARY.md (single source of truth for schema)
+- RLS_IMPLEMENTATION_GUIDE.md (security patterns)
+- SECURITY_FIRST_ARCHITECTURE.md
+- 136 docs, 36 specs, 208 Confluence pages
+- Technical Writer agent role
+
+**4. Good Version Control Habits**:
+- Rebase-first workflow (linear history)
+- Conventional commits (type(scope): description [TICKET-ID])
+- Atomic commits (one logical change per commit)
+- RTE agent manages git workflow
+- CONTRIBUTING.md enforces git standards
+
+**5. Effective Automation**:
+- CI/CD pipeline with quality gates
+- ESLint + markdownlint automation
+- `yarn ci:validate` pre-push checks
+- GitHub Actions workflows
+- Automated RLS validation scripts
+
+**6. Culture of Code Review**:
+- System Architect review gates (WOR-323)
+- CODEOWNERS for critical areas
+- PR template with review checklist
+- Evidence attachment to Linear tickets
+- Multi-agent validation (7 agents reviewed this whitepaper)
+- "Stop-the-line" authority for architectural concerns
+
+**7. Management Skills**:
+- TDM (Technical Delivery Manager) agent for coordination
+- Clear agent roles with specific responsibilities
+- Escalation protocols when blocked
+- Evidence-based delivery
+- "Round table" philosophy (equal voice for all agents)
+
+**8. Really Good Manual QA**:
+- QAS agent executes BSA testing strategy
+- Demo scripts in specifications
+- Acceptance criteria validation
+- Edge case identification
+
+**9. Strong Research Skills**:
+- Pattern discovery protocol (MANDATORY before implementation)
+- Session archaeology (search past agent work)
+- Codebase retrieval before implementation
+- System Architect validates approaches
+
+**10. Preview Environment**:
+- Coolify.io deployment pipeline
+- Preview environments for PRs
+- Local development with Docker
+- Database migrations tested locally first
+
+**11. Instinct for What to Outsource**:
+- 11 specialized agent roles (each knows their domain)
+- Clear boundaries between agent responsibilities
+- Escalation when agent is blocked
+
+**12. Updated Sense of Estimation**:
+- 14× velocity growth tracked (Cycle 3 → Cycle 8)
+- 9 sprint cycles of production data
+- Linear metrics show acceleration
+- Honest limitations documented (Section 7)
+
+### 3.8.3 Unique Contributions Beyond Vibe Engineering
+
+Our methodology extends vibe engineering with three innovations:
+
+**Meta-Circular Validation**:
+- The methodology validated itself
+- 7 agents caught fabricated data before publication
+- Complete evidence trail preserved
+- Proof the methodology works (Section 8)
+
+**Evidence-Based Delivery**:
+- All work produces verifiable evidence
+- Evidence attached to Linear tickets
+- Session IDs for traceability
+- Validation results documented
+
+**SAFe Framework Integration**:
+- Agile Release Train (ART) model
+- Epics → Features → Stories → Enablers
+- Sprint cycles with velocity tracking
+- Retrospectives with agents
+
+### 3.8.4 Implications for Adoption
+
+Willison's observation that "AI tools amplify existing expertise" has critical implications:
+
+**Success Requires Senior Engineering Skills**:
+- Not a replacement for junior developers
+- Requires top-tier software engineering practices
+- Demands strong research, planning, and QA skills
+- Needs management experience (even for "digital interns")
+
+**Our Production Data Validates This**:
+- 90.9% PR merge rate (high quality maintained)
+- 14× velocity growth (expertise amplified)
+- 2,193 commits over 5 months (sustained productivity)
+- Zero fabricated data in final publication (quality gates work)
+
+**The Bar Is Higher, Not Lower**:
+- More code review, not less
+- More planning, not less
+- More testing, not less
+- More accountability, not less
+
+This aligns with our honest assessment in Section 7: this methodology is not for everyone, and not for all projects.
+
+**Reference**: Willison, S. (2025). Vibe engineering. <https://simonwillison.net/2025/Oct/7/vibe-engineering/>
+
+## 3.9 Summary of Background
 
 The evolution from code completion to multi-agent orchestration represents a fundamental shift in AI-assisted development. By combining:
 - SAFe's proven scaling model
 - Quality gate research
 - Multi-agent coordination
 - Production engineering discipline
+- Vibe engineering principles (Willison, 2025)
 
 We created a system that delivers:
-- high quality maintenance (90.9% PR merge rate)
-- comprehensive documentation (136 docs, 36 specs)
+- High quality maintenance (90.9% PR merge rate)
+- Comprehensive documentation (136 docs, 36 specs)
 - Predictable costs
 - Scalable process
+- Professional accountability (vibe engineering, not vibe coding)
 
 But also requires:
 - 3-4x higher costs
 - 8-12 week learning curve
 - Significant process discipline
 - Continuous maintenance
+- Senior engineering expertise (AI amplifies existing skills)
 
 The next section details the core innovation that enables this system.
 
