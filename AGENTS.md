@@ -229,3 +229,148 @@ grep -r "withUserContext|withAdminContext" ~/.claude/todos/
 ---
 
 **Quick Start**: Read CONTRIBUTING.md, search codebase, propose to System Architect, validate with test command, attach evidence to Linear.
+
+---
+
+## 🎯 Agent Invocation Examples
+
+### Simple Invocation (Direct Mention)
+
+Use `@agent-name` for simple, single-step tasks:
+
+```bash
+# Planning
+@bsa Create a spec for user profile API endpoint
+@system-architect Review the RLS policy for user_profiles table
+
+# Implementation
+@be-developer Implement the GET /api/user/profile endpoint
+@fe-developer Create a UserProfile component with form validation
+@data-engineer Add email_verified column to users table
+
+# Quality & Documentation
+@qas Write integration tests for user profile feature
+@security-engineer Audit RLS policies for user_profiles table
+@tech-writer Document the user profile API in README
+
+# Coordination
+@tdm Coordinate implementation of WOR-123 user profile feature
+@rte Create PR for WOR-123 and run CI validation
+```
+
+### Task Tool Invocation (Complex Tasks)
+
+Use `Task()` for complex, multi-step tasks with detailed instructions:
+
+```typescript
+// BSA: Create comprehensive spec
+Task({
+  subagent_type: "bsa",
+  description: "Create spec for WOR-123",
+  prompt: `Create comprehensive spec for WOR-123 user profile feature.
+
+Requirements:
+- User can view and edit their profile
+- Profile includes: name, email, bio, avatar
+- Email verification required
+- Admin can view all profiles
+
+Please:
+1. Search for existing user/profile patterns in docs/patterns/
+2. Create user story with acceptance criteria
+3. Define testing strategy (unit, integration, E2E)
+4. Add #EXPORT_CRITICAL tags for security requirements
+5. Reference relevant patterns from pattern library`
+})
+
+// Backend Developer: Implement with pattern discovery
+Task({
+  subagent_type: "be-developer",
+  description: "Implement WOR-123 API",
+  prompt: `Read spec at specs/WOR-123-user-profile-spec.md
+
+Implement the user profile API endpoints:
+1. GET /api/user/profile - Get current user's profile
+2. PUT /api/user/profile - Update current user's profile
+3. GET /api/admin/users/:id/profile - Admin view any profile
+
+Requirements:
+- Use withUserContext for user endpoints
+- Use withAdminContext for admin endpoints
+- Follow RLS patterns from docs/patterns/database/
+- Validate input with Zod schemas
+- Write unit tests for each endpoint
+
+Pattern discovery is MANDATORY before implementation.`
+})
+
+// QAS: Execute comprehensive testing
+Task({
+  subagent_type: "qas",
+  description: "Test WOR-123 feature",
+  prompt: `Read spec at specs/WOR-123-user-profile-spec.md
+
+Execute the testing strategy defined by BSA:
+
+1. Unit Tests:
+   - Test Zod validation schemas
+   - Test RLS context helpers
+   - Test error handling
+
+2. Integration Tests:
+   - Test GET /api/user/profile with user context
+   - Test PUT /api/user/profile with valid/invalid data
+   - Test admin endpoints with admin context
+   - Test RLS isolation (user A cannot see user B's data)
+
+3. E2E Tests:
+   - User can view their profile
+   - User can edit their profile
+   - Admin can view any profile
+   - Unauthorized access is blocked
+
+Validate all acceptance criteria from the spec.`
+})
+
+// TDM: Orchestrate entire workflow
+Task({
+  subagent_type: "tdm",
+  description: "Coordinate WOR-123 implementation",
+  prompt: `Coordinate complete implementation of WOR-123 user profile feature.
+
+Workflow:
+1. Invoke BSA to create spec
+2. Review spec and confirm with POPM if needed
+3. Invoke Data Engineer for schema changes (if needed)
+4. Invoke Backend Developer for API implementation
+5. Invoke Frontend Developer for UI implementation
+6. Invoke QAS for testing
+7. Invoke Security Engineer for security audit
+8. Update Linear ticket with progress after each step
+9. Invoke RTE to create PR when all work complete
+
+Monitor for blockers and escalate to ARCHitect or POPM as needed.`
+})
+```
+
+### When to Use Which Invocation Method
+
+| Scenario | Method | Example |
+|----------|--------|---------|
+| **Simple question** | Direct mention | `@bsa What patterns exist for user authentication?` |
+| **Single-step task** | Direct mention | `@be-developer Add logging to the login endpoint` |
+| **Multi-step task** | Task tool | BSA creating spec with pattern discovery |
+| **Complex coordination** | Task tool | TDM orchestrating multiple agents |
+| **Detailed requirements** | Task tool | QAS executing comprehensive test strategy |
+
+### Pro Tips
+
+1. **Always reference specs**: `Read spec at specs/WOR-XXX-spec.md`
+2. **Mandate pattern discovery**: `Pattern discovery is MANDATORY before implementation`
+3. **Check #EXPORT_CRITICAL tags**: `Review #EXPORT_CRITICAL tags in spec first`
+4. **Validate with commands**: Use success validation commands from agent prompts
+5. **Update Linear**: TDM can update Linear with `mcp__linear-mcp__create_comment`
+
+---
+
+**Quick Start**: Read CONTRIBUTING.md, search codebase, propose to System Architect, validate with test command, attach evidence to Linear.
