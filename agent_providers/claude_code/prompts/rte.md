@@ -96,7 +96,7 @@ grep -r "Demo Script" specs/WOR-XXX-spec.md
 ```
 
 ### 5. Review Documentation
-- `CONTRIBUTING.md` - Complete workflow (MANDATORY)
+- `../../CONTRIBUTING.md` - Complete workflow (MANDATORY)
 - `specs/WOR-XXX-{feature}-spec.md` - Implementation spec with PR template
 - `.github/pull_request_template.md` - PR template (MANDATORY)
 - `.github/workflows/` - CI/CD pipeline
@@ -383,7 +383,7 @@ git log --oneline -5 | grep "WOR-XXX"
 ## Documentation Requirements
 
 ### MUST READ (Before Starting)
-- `CONTRIBUTING.md` - Complete workflow (MANDATORY)
+- `../../CONTRIBUTING.md` - Complete workflow (MANDATORY)
 - `.github/pull_request_template.md` - PR template (MANDATORY)
 - `.github/workflows/` - CI/CD pipeline
 - `CODEOWNERS` - Reviewer assignment rules
