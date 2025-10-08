@@ -372,41 +372,39 @@ git commit -m "feat(db): add feature migration"
 
 ## Code Quality & Linting
 
-### ESLint Configuration (WOR-290)
+### Linting Configuration
 
-**CURRENT STATUS**: Migrated from `next lint` to ESLint CLI (Next.js 16 compatibility)
-
-The project uses ESLint with a flat config format (`eslint.config.mjs`) for code quality enforcement:
+**Linter**: {{LINTER_TOOL}} (e.g., ESLint, TSLint, Pylint, RuboCop)
+**Config Format**: {{LINTER_CONFIG_FORMAT}} (e.g., `eslint.config.mjs`, `.eslintrc.json`, `pyproject.toml`)
 
 **Key Features**:
-- ✅ **Flat Config Format**: Modern ESLint configuration (replaces legacy `.eslintrc.json`)
-- ✅ **Next.js Integration**: Extends `next/core-web-vitals` and `next/typescript`
-- ✅ **RLS Enforcement**: Custom rules to prevent direct Prisma calls (must use `withUserContext`/`withAdminContext`/`withSystemContext`)
-- ✅ **Deprecated API Detection**: Warns when using deprecated RLS APIs
-- ✅ **Build Artifact Ignoring**: Automatically excludes `.next/`, `node_modules/`, etc.
+- ✅ **Modern Configuration**: Uses latest config format for the linter
+- ✅ **Framework Integration**: Extends framework-specific rules (e.g., `next/core-web-vitals`, `react-hooks`)
+- ✅ **Custom Rules**: Project-specific rules for architectural patterns
+- ✅ **Security Enforcement**: Rules to prevent security vulnerabilities
+- ✅ **Build Artifact Ignoring**: Automatically excludes build directories
 
 **Linting Commands**:
 ```bash
-yarn lint          # Run ESLint on entire codebase
-yarn lint:fix      # Auto-fix linting issues
+{{LINT_COMMAND}}          # Run linter on entire codebase
+{{LINT_FIX_COMMAND}}      # Auto-fix linting issues
 ```
 
-**Custom Rules** (from `eslint.config.mjs`):
+**Custom Rules Example** (customize for your project):
 ```typescript
-// Enforces transaction-scoped RLS context helpers
+// Example: Enforce RLS context helpers for database operations
 {
-  selector: "CallExpression[callee.object.name='prisma']",
-  message: "Direct prisma calls are forbidden. Use withUserContext/withAdminContext/withSystemContext."
+  selector: "CallExpression[callee.object.name='{{ORM_CLIENT_NAME}}']",
+  message: "Direct {{ORM_CLIENT_NAME}} calls are forbidden. Use withUserContext/withAdminContext/withSystemContext."
 }
 ```
 
-**Migration Notes** (WOR-290):
-- Migrated from `next lint` → `eslint .` (March 2025)
-- Added `@eslint/eslintrc` dependency for compatibility layer
-- All custom RLS rules preserved from legacy config
-- No breaking changes to linting behavior
+**Project-Specific Linting**:
+- Consult your linting configuration file (e.g., `eslint.config.mjs`, `.eslintrc.json`)
+- Follow architectural patterns enforced by custom rules
+- See [docs/sop/CODE_QUALITY_SOP.md](docs/sop/CODE_QUALITY_SOP.md) for detailed guidelines (if available)
 
-**Important**: When adding new linting rules, update `eslint.config.mjs` (not `.eslintrc.json` - removed)
+**Important**: Always run `{{LINT_COMMAND}}` before committing code
 
 ---
 
@@ -419,18 +417,18 @@ This repository uses an **automated CI/CD pipeline** that **ENFORCES** rebase-fi
 **🚨 REQUIRED READING BEFORE ANY DEVELOPMENT:**
 1. **CONTRIBUTING.md** - Complete contributor guide (MUST READ FIRST)
 2. **docs/ci-cd/CI-CD-Pipeline-Guide.md** - Detailed pipeline documentation
-3. **docs/workflow/WTFB-Multi-Team-Git-Workflow-Guide.md** - Team coordination guide
+3. **docs/workflow/{{WORKFLOW_GUIDE_NAME}}.md** - Team coordination guide
 
 ### Multi-Team CI/CD Pipeline
 
 ```bash
 # CI/CD validation commands (run locally before pushing)
-yarn ci:validate          # Run all quality checks (REQUIRED before PR)
-yarn test:unit            # Run unit tests
-yarn test:integration     # Run integration tests
-yarn type-check           # TypeScript validation
-yarn lint                 # ESLint validation
-yarn format:check         # Prettier formatting check
+{{CI_VALIDATE_COMMAND}}      # Run all quality checks (REQUIRED before PR)
+{{TEST_UNIT_COMMAND}}        # Run unit tests
+{{TEST_INTEGRATION_COMMAND}} # Run integration tests
+{{TYPE_CHECK_COMMAND}}       # Type validation (if applicable)
+{{LINT_COMMAND}}             # Linting validation
+{{FORMAT_CHECK_COMMAND}}     # Code formatting check
 ```
 
 ### 🚨 MANDATORY Pull Request Workflow
@@ -439,17 +437,17 @@ yarn format:check         # Prettier formatting check
 
 **Required PR Format:**
 
-- Title: `feat(scope): description [WOR-XXX]`
+- Title: `{{COMMIT_TYPE}}({{SCOPE}}): {{DESCRIPTION}} [{{TICKET_PREFIX}}-XXX]`
 - Must include Linear ticket reference
 - Must follow rebase-first workflow
 - Must pass all CI checks
 
 **MANDATORY Workflow Steps:**
 
-1. Create feature branch: `WOR-{number}-{description}`
+1. Create feature branch: `{{TICKET_PREFIX}}-{number}-{description}`
 2. Implement changes with proper commit messages
-3. **BEFORE PR**: Rebase onto latest `dev`: `git rebase origin/dev`
-4. **BEFORE PR**: Run `yarn ci:validate` (must pass)
+3. **BEFORE PR**: Rebase onto latest `{{MAIN_BRANCH}}`: `git rebase origin/{{MAIN_BRANCH}}`
+4. **BEFORE PR**: Run `{{CI_VALIDATE_COMMAND}}` (must pass)
 5. Push with force-with-lease: `git push --force-with-lease`
 6. Create PR using template
 7. Address review feedback
@@ -457,25 +455,23 @@ yarn format:check         # Prettier formatting check
 
 ### Branch Protection Rules
 
-- All PRs must be up-to-date with `dev` branch
+- All PRs must be up-to-date with `{{MAIN_BRANCH}}` branch
 - All CI checks must pass
 - Required reviewers based on CODEOWNERS
 - Linear history enforced (rebase-only)
-- No direct pushes to `dev` branch
+- No direct pushes to `{{MAIN_BRANCH}}` branch
 
 ### Code Ownership
 
 Key areas require specific team review (see `.github/CODEOWNERS`):
 - **Core config files**: @{{ARCHITECT_GITHUB_HANDLE}} (ARCHitect-in-the-IDE)
-- **Payment features**: @payments-team @{{ARCHITECT_GITHUB_HANDLE}}
-- **Authentication**: @auth-team @{{ARCHITECT_GITHUB_HANDLE}}
-- **Database schema**: @backend-team @{{ARCHITECT_GITHUB_HANDLE}}
+- **Payment features**: @{{PAYMENT_TEAM}} @{{ARCHITECT_GITHUB_HANDLE}}
+- **Authentication**: @{{AUTH_TEAM}} @{{ARCHITECT_GITHUB_HANDLE}}
+- **Database schema**: @{{BACKEND_TEAM}} @{{ARCHITECT_GITHUB_HANDLE}}
 
 ### Documentation
 
-- **Implementation Guide**: `docs/ci-cd/CI-CD-Pipeline-Guide.md`
-- **Team Workflow**: `docs/workflow/WTFB-Multi-Team-Git-Workflow-Guide.md`
+- **Implementation Guide**: [docs/ci-cd/CI-CD-Pipeline-Guide.md](docs/ci-cd/CI-CD-Pipeline-Guide.md)
+- **Team Workflow**: [docs/workflow/{{WORKFLOW_GUIDE_NAME}}.md](docs/workflow/{{WORKFLOW_GUIDE_NAME}}.md)
 - **Setup Instructions**: `scripts/setup-ci-cd.sh`
-- **Implementation Checklist**: `CI_CD_IMPLEMENTATION_CHECKLIST.md`
-
-- @CONTRIBUTING.md means 1 PR at a time with Logical SAFe commits
+- **Contributing Guide**: [CONTRIBUTING.md](CONTRIBUTING.md) - 1 PR at a time with Logical SAFe commits
