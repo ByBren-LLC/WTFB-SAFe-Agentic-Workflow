@@ -20,6 +20,138 @@ A comprehensive methodology for software development using **multi-agent orchest
 
 ---
 
+## ✨ What Makes This Methodology Unique
+
+This isn't just "AI-assisted development" - it's a fundamentally different approach to human-AI collaboration:
+
+### 🎯 Round Table Philosophy
+
+**Equal Voice for All Contributors** - Human and AI input have equal weight in technical discussions. No hierarchy, just expertise.
+
+- ✅ **Mutual Respect**: All perspectives valued, regardless of source
+- ✅ **Shared Responsibility**: Everyone owns project success
+- ✅ **Transparent Decision-Making**: Decisions made openly with input from all
+- ✅ **Constructive Disagreement**: Disagreement welcomed when it leads to better solutions
+
+**Why This Matters**: Traditional AI tools are "assistants" - this methodology treats AI as **collaborative team members** with agency and expertise.
+
+### 🛑 Stop-the-Line Authority
+
+**AI Agents Can Halt Work** - Any agent can exercise "stop-the-line" authority for architectural or security concerns.
+
+- 🚨 **Architectural Integrity**: Flag issues that compromise system design
+- 🔐 **Security Concerns**: Highlight potential vulnerabilities
+- 📈 **Performance Implications**: Note potential bottlenecks
+- 🔧 **Maintainability Issues**: Identify future maintenance problems
+
+**When Exercised**:
+1. Agent clearly explains the concern with specific examples
+2. Proposes alternative approaches
+3. Documents decision in an ADR (Architecture Decision Record)
+4. Updates Linear ticket with architectural discussion
+
+**Real Example**: System Architect blocked a 710-line deployment script (WOR-321) due to complexity concerns, leading to a complete redesign with proper error handling and rollback capabilities.
+
+### 👁️ Claude Code Orchestration Visibility
+
+**Clever Use of Agent Visibility** - Claude Code's Task tool shows all active agents in the UI, creating natural coordination.
+
+- 📊 **Visual Coordination**: See which agents are working on what
+- 🔄 **Handoff Transparency**: Clear visibility into agent-to-agent handoffs
+- 🎯 **Blocker Identification**: Immediately see when agents are blocked
+- 📝 **Evidence Trail**: Complete audit trail of all agent interactions
+
+**Innovation**: We turned a UI feature into a coordination mechanism - agents can "see" each other's work through the task list, enabling natural collaboration without complex orchestration logic.
+
+### 🔍 Pattern Discovery Protocol
+
+**"Search First, Reuse Always, Create Only When Necessary"** - MANDATORY before any implementation.
+
+**4-Step Discovery Process**:
+1. **Search Specs Directory**: Find similar implementations in past specs
+2. **Search Codebase**: Look for existing patterns and helpers
+3. **Search Pattern Library**: Check `patterns_library/` for reusable patterns
+4. **Propose to System Architect**: Get approval before creating new patterns
+
+**Why This Works**: Prevents reinventing the wheel, ensures consistency, and builds institutional knowledge over time.
+
+### 🏷️ Metacognitive Tags System
+
+**Explicit Knowledge Transfer** - Three tags for passing context from planning to execution:
+
+- `#PATH_DECISION` - Documents **why** a particular approach was chosen over alternatives
+- `#PLAN_UNCERTAINTY` - Flags assumptions that require validation during implementation
+- `#EXPORT_CRITICAL` - Highlights non-negotiable requirements (security, compliance, architecture)
+
+**Example**:
+```markdown
+#PATH_DECISION: Chose REST over GraphQL due to existing API patterns
+#PLAN_UNCERTAINTY: Assumed field is optional - verify with POPM
+#EXPORT_CRITICAL: MUST use withAdminContext for all operations
+```
+
+**Impact**: Execution agents understand not just **what** to build, but **why** decisions were made and **what** cannot be compromised.
+
+### 📋 Specs-Driven Workflow
+
+**Single Source of Truth** - Every feature starts with a comprehensive spec following SAFe hierarchy:
+
+```
+Epic (Strategic Initiative)
+  └── Feature (Deliverable Capability)
+      ├── User Story (User-Facing Functionality)
+      └── Enabler (Technical Foundation)
+```
+
+**Workflow**:
+1. BSA creates spec with acceptance criteria and testing strategy
+2. System Architect validates architectural approach
+3. Implementation agents execute with pattern discovery
+4. QAS validates against acceptance criteria
+5. Evidence attached to Linear ticket before POPM review
+
+**Key Insight**: Separation of planning (BSA) from execution (developers) ensures thorough upfront thinking and consistent implementation.
+
+### 🎭 Specialized Agent Roles with Tool Restrictions
+
+**Each Agent Has Specific Capabilities** - Not all agents can do everything:
+
+- **Planning Agents** (Opus model): BSA, System Architect - Slower but thorough
+- **Execution Agents** (Sonnet model): Developers, Engineers - Faster implementation
+- **Tool Restrictions**: Each agent only has access to tools needed for their role
+
+**Example**: QAS (Quality Assurance) can only Read, Bash, and Grep - cannot Write or Edit code. This enforces role boundaries and prevents scope creep.
+
+### 📊 Evidence-Based Delivery
+
+**All Work Requires Verifiable Evidence** - No "trust me, it works":
+
+- ✅ **Test Results**: All tests must pass before PR
+- ✅ **Screenshots**: Visual proof of UI changes
+- ✅ **Validation Output**: Command output showing success
+- ✅ **Session IDs**: Complete audit trail of agent work
+
+**Swimlane Workflow**: Backlog → Ready → In Progress → Testing → Ready for Review → Done
+
+**POPM Approval**: Product Owner/Product Manager has final approval on all deliverables with full evidence trail.
+
+### 🔄 Simon Willison's Agent Loop
+
+**Iterative Problem Solving** - Agents follow a clear loop until success or blocked:
+
+1. **Clear Goal** - BSA defines with acceptance criteria
+2. **Pattern Discovery** - Search codebase and sessions
+3. **Iterative Problem Solving**:
+   - Implement approach
+   - Run validation command
+   - If fails → analyze error, adjust, repeat
+   - If blocked → escalate to TDM with context
+4. **Evidence Attachment** - Session ID + validation results in Linear
+
+**No Over-Engineering**: No file locks, circuit breakers, or arbitrary retry limits. Agents iterate until success or blocked, then escalate with context.
+
+---
+
 ## 📊 Real Production Results
 
 | Metric | Value | Source |
