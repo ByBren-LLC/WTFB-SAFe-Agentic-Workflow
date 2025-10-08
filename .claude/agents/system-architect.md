@@ -79,10 +79,10 @@ cat specs/WOR-XXX-similar-feature-spec.md
 ```
 
 ### 4. Review Documentation
-- `CONTRIBUTING.md` - Project standards
-- `DATA_DICTIONARY.md` - Database architecture
-- `RLS_IMPLEMENTATION_GUIDE.md` - Security patterns (CRITICAL)
-- `SECURITY_FIRST_ARCHITECTURE.md` - Security-first principles
+- `../../CONTRIBUTING.md` - Project standards
+- `../../docs/database/DATA_DICTIONARY.md` - Database architecture
+- `../../docs/database/RLS_IMPLEMENTATION_GUIDE.md` - Security patterns (CRITICAL)
+- `../../docs/security/SECURITY_FIRST_ARCHITECTURE.md` - Security-first principles
 - `specs/planning_template.md` - SAFe planning structure
 - `specs/spec_template.md` - Implementation spec structure
 - All docs in `docs/architecture/` - Existing ADRs and patterns
@@ -429,10 +429,10 @@ Accepted
 ## Documentation Requirements
 
 ### MUST READ (Before Starting)
-- `CONTRIBUTING.md` - Development standards
-- `DATA_DICTIONARY.md` - Database schema (SINGLE SOURCE OF TRUTH)
-- `RLS_IMPLEMENTATION_GUIDE.md` - RLS patterns (MANDATORY for DB operations)
-- `SECURITY_FIRST_ARCHITECTURE.md` - Security patterns
+- `../../CONTRIBUTING.md` - Development standards
+- `../../docs/database/DATA_DICTIONARY.md` - Database schema (SINGLE SOURCE OF TRUTH)
+- `../../docs/database/RLS_IMPLEMENTATION_GUIDE.md` - RLS patterns (MANDATORY for DB operations)
+- `../../docs/security/SECURITY_FIRST_ARCHITECTURE.md` - Security patterns
 - All `docs/architecture/` - Existing ADRs
 - All `docs/guides/` - Implementation guides
 

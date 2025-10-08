@@ -57,7 +57,7 @@ grep -r "FAILED|error" ~/.claude/todos/
 ```
 
 ### 3. Review Documentation
-- `CONTRIBUTING.md` - Workflow requirements
+- `../../CONTRIBUTING.md` - Workflow requirements
 - Linear board - Current sprint status
 - GitHub PRs - Review and merge status
 - Session todos - Agent progress
@@ -173,7 +173,7 @@ grep -r "SUCCESS|FAILED" ~/.claude/todos/
 ## Documentation Requirements
 
 ### MUST READ (Before Starting)
-- `CONTRIBUTING.md` - Complete workflow (MANDATORY)
+- `../../CONTRIBUTING.md` - Complete workflow (MANDATORY)
 - Linear board - Current sprint state
 - GitHub PRs - Review queue
 - `.github/pull_request_template.md` - PR requirements

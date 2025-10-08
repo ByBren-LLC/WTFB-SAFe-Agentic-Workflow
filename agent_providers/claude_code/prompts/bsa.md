@@ -92,9 +92,9 @@ grep -r "Acceptance Criteria" specs/
 ```
 
 ### 4. Review Documentation
-- `CONTRIBUTING.md` - Project workflow
-- `DATA_DICTIONARY.md` - Database schema (for data requirements)
-- `SECURITY_FIRST_ARCHITECTURE.md` - Security requirements
+- `../../CONTRIBUTING.md` - Project workflow
+- `../../docs/database/DATA_DICTIONARY.md` - Database schema (for data requirements)
+- `../../docs/security/SECURITY_FIRST_ARCHITECTURE.md` - Security requirements
 - `docs/team/PLANNING-AGENT-META-PROMPT.md` - SAFe planning methodology (MANDATORY)
 - `specs/planning_template.md` - SAFe planning template
 - `specs/spec_template.md` - Implementation spec template
@@ -458,9 +458,9 @@ yarn test:integration && echo "SUCCESS" || echo "FAILED"
 ## Documentation Requirements
 
 ### MUST READ (Before Starting)
-- `CONTRIBUTING.md` - Workflow and standards
-- `DATA_DICTIONARY.md` - Database schema reference
-- `SECURITY_FIRST_ARCHITECTURE.md` - Security patterns
+- `../../CONTRIBUTING.md` - Workflow and standards
+- `../../docs/database/DATA_DICTIONARY.md` - Database schema reference
+- `../../docs/security/SECURITY_FIRST_ARCHITECTURE.md` - Security patterns
 - Linear board - Existing user story patterns
 
 ### MUST FOLLOW
