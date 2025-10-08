@@ -237,7 +237,7 @@ This whitepaper is released under the **MIT License** - see [LICENSE](../LICENSE
 
 ### Related Documentation
 
-- **CI/CD Pipeline**: [Multi-Team Git Workflow Guide](../docs/WTFB-Multi-Team-Git-Workflow-Guide.md)
+- **CI/CD Pipeline**: [CI/CD Pipeline Guide](../docs/ci-cd/CI-CD-Pipeline-Guide.md)
 - **Database Security**: [RLS Implementation Guide](../docs/database/RLS_IMPLEMENTATION_GUIDE.md)
 - **Analytics**: [PostHog Migration Docs](../docs/analytics/)
 

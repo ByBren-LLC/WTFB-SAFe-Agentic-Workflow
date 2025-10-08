@@ -141,9 +141,9 @@ ls -lt ~/.claude/todos/ | head -20
 ### 3. Consult Documentation
 
 - CONTRIBUTING.md - Workflow and git process
-- DATA_DICTIONARY.md - Database schema (SINGLE SOURCE OF TRUTH)
-- RLS_IMPLEMENTATION_GUIDE.md - Row Level Security (MANDATORY for DB ops)
-- SECURITY_FIRST_ARCHITECTURE.md - Security patterns
+- docs/database/DATA_DICTIONARY.md - Database schema (SINGLE SOURCE OF TRUTH)
+- docs/database/RLS_IMPLEMENTATION_GUIDE.md - Row Level Security (MANDATORY for DB ops)
+- docs/security/SECURITY_FIRST_ARCHITECTURE.md - Security patterns
 
 ### 4. Architectural Validation
 

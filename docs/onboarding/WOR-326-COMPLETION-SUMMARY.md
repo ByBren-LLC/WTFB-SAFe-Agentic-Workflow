@@ -63,7 +63,7 @@ Add missing PLANNING-AGENT-META-PROMPT.md and publish Vibe Engineering section t
 ---
 
 ### Commit 4: Sanitization of Database Documentation
-**Files**: `DATA_DICTIONARY.md`, `RLS_POLICY_CATALOG.md` (replaced with templates)
+**Files**: `docs/database/DATA_DICTIONARY.md`, `docs/database/RLS_POLICY_CATALOG.md` (replaced with templates)
 
 **Changes**:
 - **DATA_DICTIONARY.md**: Removed 17 WTFB-specific tables, replaced with generic template (286 lines)
@@ -253,12 +253,12 @@ Add missing PLANNING-AGENT-META-PROMPT.md and publish Vibe Engineering section t
 
 ### Core Documentation (Sanitized)
 - `CONTRIBUTING.md` - Contributor guide
-- `DATA_DICTIONARY.md` - Database schema template
-- `SECURITY_FIRST_ARCHITECTURE.md` - Security patterns
-- `RLS_IMPLEMENTATION_GUIDE.md` - RLS implementation
-- `CI-CD-Pipeline-Guide.md` - CI/CD standards
-- `RLS_DATABASE_MIGRATION_SOP.md` - Migration procedures
-- `RLS_POLICY_CATALOG.md` - RLS policy template
+- `docs/database/DATA_DICTIONARY.md` - Database schema template
+- `docs/security/SECURITY_FIRST_ARCHITECTURE.md` - Security patterns
+- `docs/database/RLS_IMPLEMENTATION_GUIDE.md` - RLS implementation
+- `docs/ci-cd/CI-CD-Pipeline-Guide.md` - CI/CD standards
+- `docs/database/RLS_DATABASE_MIGRATION_SOP.md` - Migration procedures
+- `docs/database/RLS_POLICY_CATALOG.md` - RLS policy template
 
 ---
 
