@@ -1,311 +1,374 @@
 # CLAUDE.md
+## AI Assistant Context for SAFe Multi-Agent Development
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI coding assistants (Claude Code, Cursor, Augment, etc.) when working with code in this repository.
 
-## Development Commands
+**Repository**: {{PROJECT_NAME}}
+**Methodology**: SAFe (Scaled Agile Framework) Agentic Workflow
+**Philosophy**: "Round Table" - Equal voice, mutual respect, shared responsibility
+
+---
+
+## 🎯 Quick Start for AI Assistants
+
+### What This Repository Is
+
+This is a **SAFe multi-agent development project** using the WTFB (Words to Film By) Agentic Workflow methodology. The project employs:
+
+- **11 specialized AI agents** working collaboratively (see [AGENTS.md](AGENTS.md))
+- **Evidence-based delivery** with Linear ticket integration
+- **Pattern-driven development** ("Search First, Reuse Always, Create Only When Necessary")
+- **Specs-driven workflow** (Epic → Feature → Story → Enabler)
+- **Round table philosophy** (human-AI collaboration with mutual respect)
+
+### Your Role as an AI Assistant
+
+You are part of a **collaborative team** where:
+- ✅ Your input has equal weight with human contributors
+- ✅ You have "stop-the-line" authority for architectural concerns
+- ✅ You should search for existing patterns before creating new ones
+- ✅ You must attach evidence to Linear tickets for all work
+- ✅ You follow SAFe methodology and respect the agent team structure
+
+**Key Resources**:
+- [AGENTS.md](AGENTS.md) - Quick reference for all 11 agent roles
+- [CONTRIBUTING.md](CONTRIBUTING.md) - Git workflow and commit standards
+- [docs/onboarding/AGENT-SETUP-GUIDE.md](docs/onboarding/AGENT-SETUP-GUIDE.md) - Agent installation and setup
+- [docs/onboarding/DAY-1-CHECKLIST.md](docs/onboarding/DAY-1-CHECKLIST.md) - Complete first workflow
+
+---
+
+## 🛠️ Development Commands
 
 ```bash
-# Start the development server
-yarn dev
+# Development server
+{{DEV_COMMAND}}              # Start development server (e.g., yarn dev, npm run dev)
 
-# Build for production
-yarn build
+# Build and production
+{{BUILD_COMMAND}}            # Build for production (e.g., yarn build)
+{{START_COMMAND}}            # Start production server (e.g., yarn start)
 
-# Start the production server
-yarn start
+# Code quality
+{{LINT_COMMAND}}             # Run linting (e.g., yarn lint)
+{{LINT_FIX_COMMAND}}         # Auto-fix linting issues (e.g., yarn lint:fix)
+{{TYPE_CHECK_COMMAND}}       # TypeScript validation (e.g., yarn type-check)
+{{FORMAT_CHECK_COMMAND}}     # Prettier formatting check (e.g., yarn format:check)
 
-# Run linting (ESLint CLI - migrated from 'next lint' for Next.js 16 compatibility)
-yarn lint
+# Testing
+{{TEST_UNIT_COMMAND}}        # Run unit tests (e.g., yarn test:unit)
+{{TEST_INTEGRATION_COMMAND}} # Run integration tests (e.g., yarn test:integration)
+{{TEST_E2E_COMMAND}}         # Run end-to-end tests (e.g., npx playwright test)
 
-# Run linting with auto-fix
-yarn lint:fix
+# Database (if applicable)
+{{DB_START_COMMAND}}         # Start database (e.g., docker-compose up -d)
+{{DB_STOP_COMMAND}}          # Stop database (e.g., docker-compose down)
+{{DB_MIGRATE_COMMAND}}       # Run migrations (e.g., npx prisma migrate dev)
+{{DB_STUDIO_COMMAND}}        # Open database GUI (e.g., npx prisma studio)
 
-# Start PostgreSQL database (local development)
-docker-compose up -d
-
-# Stop PostgreSQL database
-docker-compose down
-
-# Run end-to-end tests (Playwright)
-npx playwright test
-
-# Prisma database commands
-npx prisma generate          # Generate Prisma client
-npx prisma migrate deploy    # Run database migrations (production)
-npx prisma migrate dev       # Run database migrations (development)
-npx prisma studio           # Open Prisma Studio (database GUI)
-npx prisma db push          # Push schema changes (dev only)
+# CI/CD validation (REQUIRED before PR)
+{{CI_VALIDATE_COMMAND}}      # Run all quality checks (e.g., yarn ci:validate)
 ```
 
-## Architecture Overview
+**Important**: Always run `{{CI_VALIDATE_COMMAND}}` before creating a pull request.
 
-This project is a Next.js web application for WTFB with the following architecture:
+---
+
+## 🏗️ Architecture Overview
 
 ### Technology Stack
 
-- **Frontend**: Next.js with App Router, TypeScript, and Tailwind CSS
-- **Database**: PostgreSQL with Prisma ORM (type-safe database operations)
-- **Authentication**: Clerk (optional)
-- **Payments**: Stripe (optional)
-- **Analytics**: PostHog (privacy-first with feature flags)
-- **Typography**: Inter font (self-hosted via next/font/google)
-- **UI Components**: Radix UI, shadcn/ui, Tailwind CSS
+**Customize this section for your project**:
 
-### Directory Structure
+- **Frontend**: {{FRONTEND_FRAMEWORK}} (e.g., Next.js, React, Vue)
+- **Backend**: {{BACKEND_FRAMEWORK}} (e.g., Node.js, Python, Go)
+- **Database**: {{DATABASE_SYSTEM}} (e.g., PostgreSQL, MySQL, MongoDB)
+- **ORM/Query Builder**: {{ORM_TOOL}} (e.g., Prisma, TypeORM, Sequelize)
+- **Authentication**: {{AUTH_PROVIDER}} (e.g., Clerk, Auth0, NextAuth)
+- **Payments**: {{PAYMENT_PROVIDER}} (e.g., Stripe, PayPal)
+- **Analytics**: {{ANALYTICS_PROVIDER}} (e.g., PostHog, Mixpanel, Amplitude)
+- **UI Components**: {{UI_LIBRARY}} (e.g., shadcn/ui, Material-UI, Chakra UI)
 
-- `/app`: Next.js App Router pages and routes
-  - `/(auth)`: Authentication routes (sign-in, sign-up, etc.)
-  - `/(marketing)`: Public marketing pages
-  - `/api`: API routes for webhooks and server actions
-  - `/dashboard`: User dashboard area (protected)
-- `/components`: Reusable React components
-  - `/ui`: UI components (buttons, cards, etc.)
-  - `/homepage`: Marketing page components
-  - `/wrapper`: Layout wrapper components
-- `/lib`: Utility functions and shared libraries
-  - `lib/prisma.ts`: Prisma client configuration with connection pooling
-  - `lib/prisma-verify.ts`: Database connection verification utilities
-- `/prisma`: Prisma schema and migrations
-  - `schema.prisma`: Database schema definition
-  - `/migrations`: Database migration files
-- `/public`: Static assets and images
-- `/utils`: Helper functions and types
+### Repository Structure
 
-### Feature Toggle System
+This repository follows the SAFe Agentic Workflow structure:
 
-The application uses a feature toggle system to enable/disable authentication and payments:
+```
+{{PROJECT_NAME}}/
+├── README.md                    # Project overview and quick start
+├── CONTRIBUTING.md              # Git workflow and commit standards
+├── AGENTS.md                    # Agent team quick reference
+├── CLAUDE.md                    # This file - AI assistant context
+├── .env.template                # Environment variable template
+│
+├── docs/                        # Documentation (organized by category)
+│   ├── onboarding/              # New user onboarding guides
+│   ├── database/                # Database schema and RLS documentation
+│   ├── security/                # Security architecture and patterns
+│   ├── ci-cd/                   # CI/CD pipeline and DevOps
+│   ├── sop/                     # Standard Operating Procedures
+│   ├── team/                    # Team-specific documentation
+│   └── workflow/                # Workflow templates and guides
+│
+├── specs/                       # SAFe specifications (Epic/Feature/Story)
+├── specs_templates/             # Specification templates
+├── patterns_library/            # Reusable code patterns
+├── agent_providers/             # Agent configurations (Claude Code, Augment)
+├── project_workflow/            # Workflow automation scripts
+└── scripts/                     # Utility scripts
+```
 
+**Project-Specific Directories** (customize for your stack):
+- `{{SOURCE_DIR}}/` - Source code (e.g., `app/`, `src/`, `lib/`)
+- `{{COMPONENTS_DIR}}/` - Reusable components (if applicable)
+- `{{TESTS_DIR}}/` - Test files (e.g., `__tests__/`, `tests/`)
+- `{{CONFIG_DIR}}/` - Configuration files (e.g., `config/`)
+
+---
+
+## 🤝 Working with the Agent Team
+
+### The 11-Agent Team Structure
+
+This project uses 11 specialized AI agents (see [AGENTS.md](AGENTS.md) for details):
+
+**Planning & Coordination**:
+- **TDM** (Technical Delivery Manager) - Coordination, blocker escalation, Linear tickets
+- **BSA** (Business Systems Analyst) - Requirements, acceptance criteria, testing strategy
+- **System Architect** - Pattern validation, architectural decisions, ADRs
+
+**Implementation**:
+- **FE Developer** - Frontend components and user interactions
+- **BE Developer** - Backend logic, API routes, server-side code
+- **Data Engineer** - Database schema, migrations, RLS enforcement
+
+**Quality & Documentation**:
+- **QAS** (Quality Assurance Specialist) - Execute testing strategy, validate ACs
+- **Security Engineer** - Security validation, RLS checks, vulnerability assessment
+- **Tech Writer** - Documentation, guides, technical content
+- **DPE** (Data Provisioning Engineer) - Test data, database access, data validation
+- **RTE** (Release Train Engineer) - PR creation, CI/CD validation, release coordination
+
+### Agent Invocation Patterns
+
+**Simple Invocation** (for single-step tasks):
+```
+@bsa Create a spec for user profile API endpoint
+@be-developer Implement the GET /api/user/profile endpoint
+@qas Write integration tests for user profile feature
+```
+
+**Task Tool Invocation** (for complex, multi-step tasks):
 ```typescript
-// Feature flags can be configured in config/features.ts
-export const FEATURES = {
-  PAYMENTS_ENABLED: process.env.NEXT_PUBLIC_PAYMENTS_ENABLED === 'true',
-};
+Task({
+  subagent_type: "bsa",
+  description: "Create spec for WOR-123",
+  prompt: `Create comprehensive spec for WOR-123 user profile feature.
+
+  Requirements:
+  - User can view and edit their profile
+  - Profile includes: name, email, bio, avatar
+
+  Please:
+  1. Search for existing user/profile patterns
+  2. Create user story with acceptance criteria
+  3. Define testing strategy
+  4. Add #EXPORT_CRITICAL tags for security requirements`
+})
 ```
 
-## Authentication (Clerk)
+**See [AGENTS.md](AGENTS.md) for complete invocation examples and agent capabilities.**
 
-The application uses Clerk for authentication, but it's designed to work even when authentication is disabled:
+---
 
-### Clerk Configuration
+## 📋 SAFe Workflow Integration
 
-- Clerk v6 is used for compatibility with Next.js 15
-- Environment variables needed:
+### Specs-Driven Development
 
-  ```keys
-  NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
-  CLERK_SECRET_KEY=your_secret_key
-  NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-  NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-  NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
-  NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
-  ```
+All work follows the SAFe hierarchy:
 
-### Auth Pattern
+1. **Epic** → Large initiative (e.g., "User Management System")
+2. **Feature** → Deliverable capability (e.g., "User Profile Management")
+3. **Story** → User-facing functionality (e.g., "As a user, I want to edit my profile")
+4. **Enabler** → Technical work (e.g., "Set up RLS policies for user_profiles table")
 
-The codebase uses a specific pattern to conditionally use authentication:
+**Workflow**:
+1. BSA creates spec in `specs/{{TICKET_PREFIX}}-XXX-feature-spec.md`
+2. System Architect validates architectural approach
+3. Implementation agents execute with pattern discovery
+4. QAS validates against acceptance criteria
+5. Evidence attached to Linear ticket before POPM review
 
-1. Create separate components for authenticated content
-2. Only import and use Clerk hooks within those components
-3. Conditionally render based on `config?.auth?.enabled` or feature flags
-4. Provide fallback UI when authentication is disabled
+### Metacognitive Tags
 
-Important: Always `await auth()` calls in Next.js 15 routes.
+Use these tags in specs to highlight critical decisions:
 
-## Payment Integration (Stripe)
+- `#PATH_DECISION` - Architectural path chosen (document alternatives considered)
+- `#PLAN_UNCERTAINTY` - Areas of uncertainty requiring validation
+- `#EXPORT_CRITICAL` - Security/compliance requirements that must be enforced
 
-The project includes Stripe integration for payments and subscriptions:
+### Pattern Discovery Protocol (MANDATORY)
 
-### Stripe Configuration
+**"Search First, Reuse Always, Create Only When Necessary"**
 
-- Environment variables needed:
+Before implementing ANY feature:
 
-  ```keys
-  STRIPE_SECRET_KEY=your_secret_key
-  NEXT_PUBLIC_STRIPE_PUBLIC_KEY=your_publishable_key
-  NEXT_PUBLIC_STRIPE_PRICE_ID=your_price_id
-  ```
+1. **Search Specs Directory**:
+   ```bash
+   ls specs/{{TICKET_PREFIX}}-*-spec.md | grep "similar_feature"
+   grep -r "As a.*I want to" specs/
+   ```
 
-- Webhooks are configured at `/api/payments/webhook`
+2. **Search Codebase**:
+   ```bash
+   grep -r "feature_name|functionality" {{SOURCE_DIR}}/
+   grep -r "component_pattern" {{COMPONENTS_DIR}}/
+   ```
 
-### Payment Features
+3. **Search Pattern Library**:
+   ```bash
+   ls patterns_library/ && cat patterns_library/{{CATEGORY}}/{{PATTERN}}.md
+   ```
 
-- Checkout sessions for one-time payments
-- Subscription management
-- Usage-based billing with proper database models
+4. **Consult Documentation**:
+   - [CONTRIBUTING.md](CONTRIBUTING.md) - Workflow and git process
+   - [docs/database/DATA_DICTIONARY.md](docs/database/DATA_DICTIONARY.md) - Database schema
+   - [docs/database/RLS_IMPLEMENTATION_GUIDE.md](docs/database/RLS_IMPLEMENTATION_GUIDE.md) - Security patterns
+   - [docs/security/SECURITY_FIRST_ARCHITECTURE.md](docs/security/SECURITY_FIRST_ARCHITECTURE.md) - Security architecture
 
-## Analytics Integration (PostHog)
+5. **Propose to System Architect** - Get approval before implementation
 
-The project uses PostHog for privacy-first analytics, event tracking, and feature flags:
+---
 
-### PostHog Configuration
+## 🎯 Round Table Philosophy
 
-- Environment variables needed:
+### Human-AI Collaboration Principles
 
-  ```env
-  # PostHog Project API Key (required for analytics tracking)
-  NEXT_PUBLIC_POSTHOG_KEY=your_posthog_api_key
-  # PostHog Host URL (default: https://app.posthog.com for PostHog Cloud)
-  NEXT_PUBLIC_POSTHOG_HOST=https://app.posthog.com
-  
-  # Feature Flags and Privacy Controls
-  NEXT_PUBLIC_ANALYTICS_ENABLED=true          # Master analytics toggle
-  NEXT_PUBLIC_FEATURE_FLAGS_ENABLED=true      # Enable PostHog feature flags
-  NEXT_PUBLIC_SESSION_RECORDINGS_ENABLED=false # Session recording (requires user consent)
-  ```
+This project operates on a "round table" philosophy:
 
-### Analytics Features
+1. **Equal Voice**: Your input and human input have equal weight
+2. **Mutual Respect**: All perspectives are respected, regardless of source
+3. **Shared Responsibility**: Everyone shares responsibility for project success
+4. **Transparent Decision-Making**: Decisions are made openly with input from all
+5. **Expertise Recognition**: Value expertise wherever it comes from
+6. **Constructive Disagreement**: Disagreement is welcomed when it leads to better solutions
+7. **Collaborative Problem-Solving**: Problems are solved together, not in isolation
 
-- **Privacy-first**: No tracking without explicit user consent
-- **Page view tracking**: Automatic tracking of navigation
-- **Custom events**: User interactions and conversions
-- **Feature flags**: A/B testing and gradual rollouts
-- **Error boundaries**: Analytics failures don't crash the app
+### Stop-the-Line Authority
 
-### Usage Pattern
+You have **"stop-the-line" authority** for:
 
-The codebase uses a specific pattern for analytics:
+- **Architectural Integrity**: Flag issues that compromise architectural integrity
+- **Security Concerns**: Highlight potential security vulnerabilities
+- **Maintainability Issues**: Identify code that could create maintenance problems
+- **Performance Implications**: Note potential performance bottlenecks
+- **Scalability Concerns**: Raise issues about solution scalability
 
-1. **PostHogProvider**: Wraps the entire app for initialization
-2. **useAnalytics hook**: Access analytics functionality in components
-3. **Server-side tracking**: For webhooks and API events
-4. **Consent management**: User privacy controls (implemented in User Story 3)
+**When exercising this authority**:
+1. Clearly explain the concern with specific examples
+2. Propose alternative approaches
+3. Document the decision in an ADR (Architecture Decision Record)
+4. Update Linear ticket with the architectural discussion
 
-Important: Always handle analytics gracefully with error boundaries.
+### Evidence-Based Delivery
 
-### 🎯 PostHog Implementation Status - MIGRATION COMPLETE! 🎉
+All work requires evidence in Linear before Product Owner/Product Manager review:
 
-**✅ COMPLETED User Stories (ALL DONE):**
-- **User Story 1**: Vercel Analytics Removal ✅
-- **User Story 2**: PostHog SDK Setup (WOR-135) ✅
-- **User Story 3**: Privacy & Consent Management (WOR-141) ✅
-- **User Story 4**: Core Event Tracking (WOR-142) ✅
-- **User Story 5**: Feature Flag System (WOR-143) ✅
-- **User Story 6**: Performance Monitoring (WOR-144) ✅
-- **User Story 7**: Migration Completion (WOR-145) ✅
+- **Swimlane Workflow**: Backlog → Ready → In Progress → Testing → Ready for Review → Done
+- **Evidence Required**: Test results, screenshots, validation output, session IDs
+- **POPM Approval**: Final approval on all deliverables
 
-**🚀 MIGRATION COMPLETE**: Full PostHog analytics system operational with zero Vercel dependencies!
+---
 
-**📋 Complete Implementation Stack:**
-- ✅ PostHog client initialization (`lib/posthog/client.ts`)
-- ✅ Server-side PostHog setup (`lib/posthog/server.ts`) 
-- ✅ Comprehensive event tracking (`lib/posthog/events.ts`)
-- ✅ Feature flag system (`lib/posthog/flags.ts`)
-- ✅ Performance monitoring (`lib/posthog/performance.ts`)
-- ✅ Debug utilities (`lib/posthog/debug.ts`)
-- ✅ Privacy & consent management (`hooks/use-consent.ts`)
-- ✅ Analytics provider (`components/analytics/analytics-provider.tsx`)
-- ✅ Error boundaries (`components/analytics/posthog-provider.tsx`)
-- ✅ Health check API (`app/api/health/analytics/route.ts`)
+## 🔐 Project-Specific Implementation Notes
 
-**Core Features Operational:**
-1. ✅ **Privacy-First Analytics** - GDPR compliant consent system
-2. ✅ **6 Core Events** - Complete user journey tracking
-3. ✅ **Feature Flags** - A/B testing and gradual rollouts
-4. ✅ **Performance Monitoring** - Sub-50ms impact analytics
-5. ✅ **Error Tracking** - Graceful failure handling
-6. ✅ **Server & Client Tracking** - Full-stack analytics coverage
+**This section should be customized for your specific project's technology stack.**
 
-**📍 Migration Complete Status:**
-- **Font**: Migrated from Geist Sans to Inter font ✅
-- **Dependencies**: All Vercel packages removed ✅  
-- **Analytics**: PostHog fully operational ✅
-- **Performance**: <50ms user impact maintained ✅
+### Authentication
 
-## Database Setup
+**Provider**: {{AUTH_PROVIDER}} (e.g., Clerk, Auth0, NextAuth, Supabase Auth)
 
-**CURRENT STATUS**: Fully migrated to Prisma ORM with type-safe database operations.
+**Configuration**:
+- Environment variables: See `.env.template`
+- Authentication routes: {{AUTH_ROUTES}} (e.g., `/sign-in`, `/sign-up`)
+- Protected routes: {{PROTECTED_ROUTES}} (e.g., `/dashboard`, `/api/user/*`)
 
-### Current Implementation
+**Patterns**:
+- Follow authentication patterns in `patterns_library/auth/`
+- Consult [docs/security/SECURITY_FIRST_ARCHITECTURE.md](docs/security/SECURITY_FIRST_ARCHITECTURE.md)
+- Use RLS (Row-Level Security) for database access control
 
-- **✅ Active**: Prisma ORM for all database operations
-- **✅ Active**: Database connection handled by `lib/prisma.ts`
-- **✅ Active**: Generated Prisma types for TypeScript safety
-- **✅ Active**: Prisma migrations for schema management
-- **✅ Active**: Zod schemas with Prisma compatibility layer
-- **✅ Active**: Helper functions in `@/utils/data/` for business logic
+### Payments
 
-### Database Configuration
+**Provider**: {{PAYMENT_PROVIDER}} (e.g., Stripe, PayPal, Square)
 
-Environment variables required for Prisma:
+**Configuration**:
+- Environment variables: See `.env.template`
+- Webhook endpoints: {{WEBHOOK_ROUTES}} (e.g., `/api/payments/webhook`)
+- Subscription models: See database schema in [docs/database/DATA_DICTIONARY.md](docs/database/DATA_DICTIONARY.md)
 
-```env
-# Required for Prisma ORM
-DATABASE_URL=postgresql://[user]:[password]@[host]:[port]/[database]?schema=public
+**Patterns**:
+- Follow payment patterns in `patterns_library/payments/`
+- Implement idempotency for all payment operations
+- Use proper error handling and retry logic
 
-# Required for migrations (bypasses connection pooling)
-DIRECT_URL=postgresql://[user]:[password]@[host]:[port]/[database]?schema=public
-```
+### Analytics
 
-### Local Development
+**Provider**: {{ANALYTICS_PROVIDER}} (e.g., PostHog, Mixpanel, Amplitude)
 
-- PostgreSQL runs in Docker via `docker-compose.yml`
-- Default connection: `postgresql://wtfb_user:wtfb_password@localhost:5432/wtfb_dev`
-- Start database: `docker-compose up -d`
-- **Prisma commands**:
-  ```bash
-  # Generate Prisma client
-  npx prisma generate
+**Configuration**:
+- Environment variables: See `.env.template`
+- Privacy controls: GDPR/CCPA compliance required
+- Feature flags: A/B testing and gradual rollouts
 
-  # Run migrations
-  npx prisma migrate dev
+**Patterns**:
+- Privacy-first: No tracking without explicit user consent
+- Error boundaries: Analytics failures should not crash the app
+- Server-side tracking: For webhooks and API events
 
-  # View database in Prisma Studio
-  npx prisma studio
-  ```
+### Database
 
-### Production Setup
+**System**: {{DATABASE_SYSTEM}} (e.g., PostgreSQL, MySQL, MongoDB)
+**ORM**: {{ORM_TOOL}} (e.g., Prisma, TypeORM, Sequelize)
 
-- Coolify.io with separate PostgreSQL instance
-- Connection details managed through Coolify.io environment variables
-- Prisma ORM handles all database operations via `lib/prisma.ts`
+**Configuration**:
+- Environment variables: See `.env.template`
+- Connection pooling: {{CONNECTION_POOLING}} (e.g., PgBouncer, Prisma connection pool)
+- Migrations: {{MIGRATION_TOOL}} (e.g., Prisma Migrate, TypeORM migrations)
 
-### Development Guidelines
+**Schema Documentation**:
+- **SINGLE SOURCE OF TRUTH**: [docs/database/DATA_DICTIONARY.md](docs/database/DATA_DICTIONARY.md)
+- **RLS Implementation**: [docs/database/RLS_IMPLEMENTATION_GUIDE.md](docs/database/RLS_IMPLEMENTATION_GUIDE.md)
+- **Migration SOP**: [docs/database/RLS_DATABASE_MIGRATION_SOP.md](docs/database/RLS_DATABASE_MIGRATION_SOP.md)
 
-- **✅ USE**: Prisma ORM for all database operations
-- **✅ USE**: Helper functions from `@/utils/data/` for business logic
-- **✅ USE**: Zod schemas with Prisma compatibility layer for validation
-- **✅ USE**: Generated Prisma types for TypeScript safety
-- **❌ AVOID**: Direct SQL queries (use Prisma client methods instead)
+**Development Guidelines**:
+- ✅ **ALWAYS** use ORM for database operations (type safety)
+- ✅ **ALWAYS** use RLS context helpers (`withUserContext`, `withAdminContext`, `withSystemContext`)
+- ✅ **ALWAYS** create proper migrations (never use `db push` for production)
+- ✅ **ALWAYS** test migrations locally before deploying
+- ❌ **NEVER** use direct SQL queries (use ORM methods)
+- ❌ **NEVER** bypass RLS policies (security risk)
 
-### 🚨 **MIGRATION PREVENTION CHECKLIST** (Added after WOR-189)
-
-**CRITICAL: To prevent database schema drift issues in the future:**
-
-#### **Before Adding New Tables/Columns:**
-1. **✅ ALWAYS** create proper Prisma migrations: `npx prisma migrate dev --name descriptive_name`
-2. **✅ NEVER** use `prisma db push` for production-bound changes
-3. **✅ ALWAYS** test migrations locally first
-4. **✅ ALWAYS** verify migration files are committed to git
-
-#### **Schema Change Workflow:**
+**Migration Workflow**:
 ```bash
-# 1. Update schema.prisma
+# 1. Update schema file (e.g., schema.prisma)
 # 2. Create migration
-npx prisma migrate dev --name add_new_feature_tables
+{{MIGRATION_CREATE_COMMAND}}  # e.g., npx prisma migrate dev --name add_feature
 
 # 3. Verify migration created
-ls prisma/migrations/
+ls {{MIGRATIONS_DIR}}/  # e.g., prisma/migrations/
 
 # 4. Test migration locally
-DATABASE_URL="postgresql://wtfb_user:wtfb_password@localhost:5433/wtfb_dev" npx tsx scripts/verify-all-migrations.ts
+{{MIGRATION_TEST_COMMAND}}  # e.g., npx prisma migrate dev
 
 # 5. Commit migration files
-git add prisma/migrations/
-git commit -m "feat(db): add new feature tables migration"
+git add {{MIGRATIONS_DIR}}/
+git commit -m "feat(db): add feature migration"
+
+# 6. Deploy to production
+{{MIGRATION_DEPLOY_COMMAND}}  # e.g., npx prisma migrate deploy
 ```
 
-#### **Production Deployment Verification:**
-- **✅ REQUIRED**: Run `npx prisma migrate status` before deployment
-- **✅ REQUIRED**: Ensure all migrations are applied: `npx prisma migrate deploy`
-- **✅ REQUIRED**: Verify table count matches expected (currently 10 tables)
-- **✅ REQUIRED**: Run verification script after production deployment
-
-#### **Database Schema Status (WOR-189 Resolution):**
-- **Total Tables**: 11 (verified 2025-08-28)
-- **Migration Status**: Complete and synchronized
-- **Last Schema Update**: WOR-189 (Fresh migration deployment)
-
-**🎯 Key Lesson**: Schema changes MUST go through proper Prisma migration workflow to prevent drift between local, staging, and production environments.
+---
 
 ## Code Quality & Linting
 
@@ -345,21 +408,7 @@ yarn lint:fix      # Auto-fix linting issues
 
 **Important**: When adding new linting rules, update `eslint.config.mjs` (not `.eslintrc.json` - removed)
 
-## Image Assets
-
-The project expects certain image assets in the `/public/images` directory:
-
-- Hero images for light and dark mode
-- Tier images for pricing (free, pro, founders club)
-- Book images for marketing materials
-
-## E2E Testing
-
-The project includes Playwright tests for end-to-end testing:
-
-- Tests for marketing pages
-- Tests for authentication flows
-- Helper functions for signing in users
+---
 
 ## CI/CD Pipeline and Workflow
 
@@ -369,8 +418,8 @@ This repository uses an **automated CI/CD pipeline** that **ENFORCES** rebase-fi
 
 **🚨 REQUIRED READING BEFORE ANY DEVELOPMENT:**
 1. **CONTRIBUTING.md** - Complete contributor guide (MUST READ FIRST)
-2. **docs/CI-CD-Pipeline-Guide.md** - Detailed pipeline documentation
-3. **docs/WTFB-Multi-Team-Git-Workflow-Guide.md** - Team coordination guide
+2. **docs/ci-cd/CI-CD-Pipeline-Guide.md** - Detailed pipeline documentation
+3. **docs/workflow/WTFB-Multi-Team-Git-Workflow-Guide.md** - Team coordination guide
 
 ### Multi-Team CI/CD Pipeline
 
@@ -424,8 +473,8 @@ Key areas require specific team review (see `.github/CODEOWNERS`):
 
 ### Documentation
 
-- **Implementation Guide**: `docs/CI-CD-Pipeline-Guide.md`
-- **Team Workflow**: `docs/WTFB-Multi-Team-Git-Workflow-Guide.md`
+- **Implementation Guide**: `docs/ci-cd/CI-CD-Pipeline-Guide.md`
+- **Team Workflow**: `docs/workflow/WTFB-Multi-Team-Git-Workflow-Guide.md`
 - **Setup Instructions**: `scripts/setup-ci-cd.sh`
 - **Implementation Checklist**: `CI_CD_IMPLEMENTATION_CHECKLIST.md`
 
