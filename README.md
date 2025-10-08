@@ -60,6 +60,44 @@ A comprehensive methodology for software development using **multi-agent orchest
 
 ---
 
+## 🚀 Quick Start for Agents
+
+**Want to use the 11-agent system in your project?** Here's how to get started in 3 steps:
+
+### Step 1: Install Claude Code or Augment Code
+
+- **Claude Code**: <https://docs.anthropic.com/claude/docs/claude-code>
+- **Augment Code**: <https://www.augmentcode.com/>
+
+### Step 2: Install the Agents
+
+```bash
+# Clone this repository
+git clone https://github.com/ByBren-LLC/WTFB-SAFe-Agentic-Workflow
+cd WTFB-SAFe-Agentic-Workflow
+
+# Install agents (choose one)
+./scripts/install-prompts.sh          # For Claude Code (user install)
+./scripts/install-prompts.sh --team   # For team sharing (in-project)
+./scripts/install-prompts.sh --augment # For Augment Code
+```
+
+### Step 3: Invoke Your First Agent
+
+```
+@bsa Create a spec for a simple "Hello World" API endpoint
+```
+
+**That's it!** The BSA agent will create a user story with acceptance criteria and testing strategy.
+
+**Next Steps**:
+- 📖 **Detailed Setup**: [Agent Setup Guide](docs/onboarding/AGENT-SETUP-GUIDE.md)
+- ✅ **Day 1 Checklist**: [Complete First Workflow](docs/onboarding/DAY-1-CHECKLIST.md)
+- 🎯 **Meta-Prompts**: [Copy-Paste Prompts for Common Tasks](docs/onboarding/META-PROMPTS-FOR-USERS.md)
+- 📚 **Agent Reference**: [AGENTS.md](AGENTS.md) - All 11 agent roles
+
+---
+
 ## 🏗️ Repository Structure
 
 ```text
